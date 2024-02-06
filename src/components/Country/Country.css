@@ -1,0 +1,14 @@
+.country-div {
+  border: 2px solid brown;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 15px;
+}
+
+.visited {
+  border: 2px solid black;
+  background-color: aquamarine;
+  border-radius: 15px;
+  margin: 15px;
+  padding: 15px;
+}
