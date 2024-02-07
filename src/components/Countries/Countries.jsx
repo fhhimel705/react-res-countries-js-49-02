@@ -5,6 +5,8 @@ import { useEffect } from "react";
 
 const Countries = () => {
   const [countries, setCountries] = useState([]);
+  const [visitedCountries, setVisitedCountries] = useState([]);
+  const [visitedFlags, setVisitedFlags] = useState([]);
   useEffect(() => {
     fetch("https://restcountries.com/v3.1/all")
       .then((res) => res.json())
@@ -14,23 +16,35 @@ const Countries = () => {
       });
   }, []);
 
-  const [visitedCountries, setVisitedCountries] = useState([]);
   const handleVisitedCountry = (country) => {
-    console.log(country);
-    console.log("visited country");
-    const newVisitedCountries = [...visitedCountries, country];
-    setVisitedCountries(newVisitedCountries);
+    // const newVisitedCountries = [...visitedCountries, country];
+    // setVisitedCountries(newVisitedCountries);
+    setVisitedCountries([...visitedCountries, country]);
+  };
+
+  const handleVisitedFlags = (country) => {
+    const newVisitedFalgs = [...visitedFlags, country];
+    setVisitedCountries(newVisitedFalgs);
   };
   return (
     <div>
       <div>
-        <h2>Visited Countries :</h2>
+        {/* countries div */}
+        <h2>Visited Countries : {visitedCountries.length} </h2>
+        <ol>
+          {visitedCountries.map((country) => (
+            <li key={country.cca3}>{country.name.common}</li>
+          ))}
+        </ol>
+        {/* flags div */}
+        <h2>flags</h2>
       </div>
       <div className="Countries-div">
         {countries.map((country) => (
           <Country
             key={country.cca3}
             handleVisitedCountry={handleVisitedCountry}
+            handleVisitedFlags={handleVisitedFlags}
             country={country}
           ></Country>
         ))}
