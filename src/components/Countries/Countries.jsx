@@ -24,7 +24,7 @@ const Countries = () => {
 
   const handleVisitedFlags = (country) => {
     const newVisitedFalgs = [...visitedFlags, country];
-    setVisitedCountries(newVisitedFalgs);
+    setVisitedFlags(newVisitedFalgs);
   };
   return (
     <div>
@@ -36,8 +36,13 @@ const Countries = () => {
             <li key={country.cca3}>{country.name.common}</li>
           ))}
         </ol>
+      </div>
+      <div>
         {/* flags div */}
         <h2>flags</h2>
+        {visitedFlags.map((country) => (
+          <img key={country.cca3} src={country.flags.png} alt="" />
+        ))}
       </div>
       <div className="Countries-div">
         {countries.map((country) => (
